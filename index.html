@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathieu Pardo - La 11ème Insoumise</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --violet:#652D90;
+    --violet-dark:#431C63;
+    --rouge:#E73E5D;
+    --blanc:#ffffff;
+    --gris:#f5f5f7;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    background:var(--gris);
+    color:#222;
+}
+
+header{
+    background:linear-gradient(135deg,var(--rouge),var(--violet));
+    color:white;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+}
+
+.hero{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:4rem;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.hero h2{
+    font-size:1.5rem;
+    margin-bottom:30px;
+    font-weight:400;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 35px;
+    border-radius:50px;
+    background:white;
+    color:var(--violet);
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:rgba(0,0,0,.15);
+    backdrop-filter:blur(10px);
+    z-index:999;
+}
+
+nav ul{
+    display:flex;
+    justify-content:center;
+    list-style:none;
+}
+
+nav li{
+    margin:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+}
+
+section{
+    padding:90px 10%;
+}
+
+.section-title{
+    text-align:center;
+    color:var(--violet);
+    font-size:2.5rem;
+    margin-bottom:50px;
+}
+
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+}
+
+.about img{
+    width:100%;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.card h3{
+    color:var(--violet);
+    margin-bottom:15px;
+}
+
+.timeline{
+    display:grid;
+    gap:20px;
+}
+
+.timeline-item{
+    background:white;
+    padding:25px;
+    border-left:6px solid var(--rouge);
+    border-radius:10px;
+}
+
+footer{
+    background:var(--violet-dark);
+    color:white;
+    text-align:center;
+    padding:40px;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.5rem;
+}
+
+.about{
+    grid-template-columns:1fr;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#projet">Projet</a></li>
+        <li><a href="#parcours">Parcours</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<header>
+    <div class="hero">
+        <h1>Mathieu Pardo</h1>
+        <h2>La 11ème Insoumise • Candidat aux élections législatives</h2>
+
+        <p style="margin-bottom:40px;font-size:1.2rem;">
+            Pour une République sociale, écologique et citoyenne.
+        </p>
+
+        <a href="#projet" class="btn">
+            Découvrir le programme
+        </a>
+    </div>
+</header>
+
+<section id="apropos">
+    <h2 class="section-title">Qui suis-je ?</h2>
+
+    <div class="about">
+        <img src="mathieu-pardo.jpg" alt="Mathieu Pardo">
+
+        <div>
+            <h3 style="color:#652D90;margin-bottom:20px;">
+                Agent territorial et homme de terrain
+            </h3>
+
+            <p>
+                Chef d'équipe voirie dans une grande collectivité,
+                engagé quotidiennement au service des habitants.
+            </p>
+
+            <br>
+
+            <p>
+                Je porte les valeurs de justice sociale,
+                d'écologie populaire et de démocratie citoyenne.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section id="projet">
+    <h2 class="section-title">Mes priorités</h2>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>🌱 Écologie populaire</h3>
+            <p>Investir dans la transition écologique sans pénaliser les citoyens.</p>
+        </div>
+
+        <div class="card">
+            <h3>🏥 Services publics</h3>
+            <p>Défendre l'hôpital, l'école et les collectivités locales.</p>
+        </div>
+
+        <div class="card">
+            <h3>💰 Pouvoir d'achat</h3>
+            <p>Augmenter les salaires et protéger les familles face à l'inflation.</p>
+        </div>
+
+        <div class="card">
+            <h3>🤝 Démocratie</h3>
+            <p>Redonner la parole aux citoyens et renforcer les consultations locales.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="parcours">
+    <h2 class="section-title">Mon parcours</h2>
+
+    <div class="timeline">
+
+        <div class="timeline-item">
+            <h3>Chef d'équipe Voirie</h3>
+            <p>Gestion d'une équipe de 14 agents dans un EPCI de plus de 800 000 habitants.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Engagement citoyen</h3>
+            <p>Défense des services publics et de l'intérêt général.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h3>Candidature législative</h3>
+            <p>Porter la voix de la 11ème circonscription et des habitants du territoire.</p>
+        </div>
+
+    </div>
+</section>
+
+<section id="contact">
+    <h2 class="section-title">Rejoindre la campagne</h2>
+
+    <div class="card">
+        <form>
+
+            <input type="text" placeholder="Nom"
+            style="width:100%;padding:15px;margin-bottom:15px;border-radius:10px;border:1px solid #ddd;">
+
+            <input type="email" placeholder="Email"
+            style="width:100%;padding:15px;margin-bottom:15px;border-radius:10px;border:1px solid #ddd;">
+
+            <textarea placeholder="Votre message"
+            style="width:100%;padding:15px;height:150px;border-radius:10px;border:1px solid #ddd;"></textarea>
+
+            <br><br>
+
+            <button class="btn" type="submit">
+                Envoyer
+            </button>
+
+        </form>
+    </div>
+</section>
+
+<footer>
+    © 2025 Mathieu Pardo - La 11ème Insoumise
+</footer>
+
+</body>
+</html>
