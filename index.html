@@ -3,304 +3,871 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mathieu Pardo - La 11ème Insoumise</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<title>Lac Evasion — Aquaparc & activités nautiques à Saint-Laurent-d'Arce, Gironde</title>
+<meta name="description" content="Aquaparc gonflable, paddle, kayak et pédalo sur un lac en pleine nature à Saint-Laurent-d'Arce, à 30 min de Bordeaux. Le terrain de jeu de tout l'été.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-    --violet:#652D90;
-    --violet-dark:#431C63;
-    --rouge:#E73E5D;
-    --blanc:#ffffff;
-    --gris:#f5f5f7;
+  --abyss:#042f3c;
+  --deep:#064d5e;
+  --teal:#0a6b7f;
+  --lagoon:#10b9cc;
+  --aqua:#5fe0d8;
+  --aqua-light:#7eede4;
+  --mist:#cdf2ee;
+  --sand:#fbf6ec;
+  --sand-2:#f3ead8;
+  --sun:#ff9d3d;
+  --coral:#ff7a59;
+  --ink:#06303a;
+  --ink-soft:#3f6b74;
+  --line:rgba(6,48,58,.12);
+  --shadow-sm:0 2px 10px rgba(4,47,60,.06);
+  --shadow-md:0 18px 50px -18px rgba(4,47,60,.30);
+  --shadow-lg:0 40px 90px -30px rgba(4,47,60,.45);
+  --r-sm:14px;
+  --r-md:22px;
+  --r-lg:30px;
+  --maxw:1200px;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Montserrat',sans-serif;
-}
-
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
-    background:var(--gris);
-    color:#222;
+  font-family:'Hanken Grotesk',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--sand);
+  line-height:1.65;
+  font-size:18px;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
 }
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3,h4{font-family:'Bricolage Grotesque',sans-serif;line-height:1.04;letter-spacing:-.02em;font-weight:700}
 
-header{
-    background:linear-gradient(135deg,var(--rouge),var(--violet));
-    color:white;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:40px;
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:clamp(20px,5vw,40px)}
+
+.eyebrow{
+  font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--teal);display:inline-flex;align-items:center;gap:.6em;
 }
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--lagoon);border-radius:2px}
+.eyebrow.light{color:var(--aqua-light)}
+.eyebrow.light::before{background:var(--aqua)}
+.eyebrow.center{justify-content:center}
 
-.hero{
-    max-width:900px;
-}
-
-.hero h1{
-    font-size:4rem;
-    font-weight:800;
-    margin-bottom:20px;
-}
-
-.hero h2{
-    font-size:1.5rem;
-    margin-bottom:30px;
-    font-weight:400;
-}
-
+/* ---------- Buttons ---------- */
 .btn{
-    display:inline-block;
-    padding:15px 35px;
-    border-radius:50px;
-    background:white;
-    color:var(--violet);
-    text-decoration:none;
-    font-weight:700;
-    transition:.3s;
+  display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+  font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:1rem;
+  padding:.95em 1.7em;border-radius:100px;cursor:pointer;border:none;
+  transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease;
+  white-space:nowrap;
 }
+.btn svg{width:1.05em;height:1.05em}
+.btn-sun{background:linear-gradient(135deg,var(--sun),var(--coral));color:#fff;box-shadow:0 12px 30px -10px rgba(255,122,89,.7)}
+.btn-sun:hover{transform:translateY(-2px);box-shadow:0 18px 38px -10px rgba(255,122,89,.8)}
+.btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.45);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--teal);transform:translateY(-2px)}
 
-.btn:hover{
-    transform:translateY(-3px);
+/* ---------- Nav ---------- */
+.nav{
+  position:fixed;inset:0 0 auto 0;z-index:100;
+  transition:background .35s ease,box-shadow .35s ease,padding .35s ease;
+  padding:22px 0;
 }
+.nav.scrolled{background:rgba(251,246,236,.85);backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);padding:14px 0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-.02em;color:#fff;transition:color .35s ease}
+.nav.scrolled .brand{color:var(--ink)}
+.brand-mark{width:38px;height:38px;flex:none;display:grid;place-items:center;border-radius:11px;background:linear-gradient(135deg,var(--lagoon),var(--aqua));box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.brand-mark svg{width:22px;height:22px}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+.nav-links a{font-weight:600;font-size:.97rem;color:rgba(255,255,255,.92);position:relative;transition:color .25s ease}
+.nav.scrolled .nav-links a{color:var(--ink-soft)}
+.nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-5px;height:2px;background:var(--lagoon);border-radius:2px;transition:right .3s ease}
+.nav-links a:hover{color:#fff}
+.nav.scrolled .nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{right:0}
+.nav-cta{display:flex;align-items:center;gap:14px}
+.nav .btn{padding:.7em 1.35em;font-size:.95rem}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+.burger span{width:26px;height:2.5px;background:#fff;border-radius:2px;transition:.3s}
+.nav.scrolled .burger span{background:var(--ink)}
 
-nav{
-    position:fixed;
-    width:100%;
-    top:0;
-    background:rgba(0,0,0,.15);
-    backdrop-filter:blur(10px);
-    z-index:999;
+/* ---------- Hero ---------- */
+.hero{
+  position:relative;min-height:100svh;display:flex;align-items:center;
+  background:linear-gradient(160deg,#0a6b7f,#042f3c 70%);
+  overflow:hidden;isolation:isolate;
 }
-
-nav ul{
-    display:flex;
-    justify-content:center;
-    list-style:none;
+.hero-img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:.45;z-index:-3;mix-blend-mode:luminosity;
 }
-
-nav li{
-    margin:20px;
+.hero::before{ /* depth gradient over photo */
+  content:"";position:absolute;inset:0;z-index:-2;
+  background:
+    radial-gradient(120% 90% at 80% 10%,rgba(95,224,216,.18),transparent 55%),
+    linear-gradient(180deg,rgba(4,47,60,.25),rgba(4,47,60,.55) 60%,rgba(4,47,60,.82));
 }
+/* animated water light */
+.caustics{position:absolute;inset:-20%;z-index:-1;opacity:.5;pointer-events:none;filter:blur(8px)}
+.caustics span{position:absolute;border-radius:50%;mix-blend-mode:screen;animation:drift 18s ease-in-out infinite}
+.caustics span:nth-child(1){width:50vw;height:50vw;left:-5%;top:-10%;background:radial-gradient(circle,rgba(95,224,216,.35),transparent 65%);animation-duration:22s}
+.caustics span:nth-child(2){width:42vw;height:42vw;right:-8%;top:20%;background:radial-gradient(circle,rgba(16,185,204,.4),transparent 65%);animation-duration:26s;animation-delay:-6s}
+.caustics span:nth-child(3){width:36vw;height:36vw;left:30%;bottom:-12%;background:radial-gradient(circle,rgba(126,237,228,.3),transparent 65%);animation-duration:20s;animation-delay:-3s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(6%,4%) scale(1.12)}66%{transform:translate(-5%,-3%) scale(.92)}}
 
-nav a{
-    color:white;
-    text-decoration:none;
-    font-weight:600;
-}
-
-section{
-    padding:90px 10%;
-}
-
-.section-title{
-    text-align:center;
-    color:var(--violet);
-    font-size:2.5rem;
-    margin-bottom:50px;
-}
-
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-    align-items:center;
-}
-
-.about img{
-    width:100%;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-}
-
-.card-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 8px 20px rgba(0,0,0,.08);
-}
-
-.card h3{
-    color:var(--violet);
-    margin-bottom:15px;
-}
-
-.timeline{
-    display:grid;
-    gap:20px;
-}
-
-.timeline-item{
-    background:white;
-    padding:25px;
-    border-left:6px solid var(--rouge);
-    border-radius:10px;
-}
-
-footer{
-    background:var(--violet-dark);
-    color:white;
-    text-align:center;
-    padding:40px;
-}
-
-@media(max-width:768px){
-
+.hero-content{position:relative;z-index:2;padding-block:140px 120px;max-width:860px}
 .hero h1{
-    font-size:2.5rem;
+  color:#fff;font-weight:700;font-size:clamp(2.9rem,8vw,6rem);margin:22px 0 0;
+  text-shadow:0 4px 40px rgba(4,47,60,.4);
+}
+.hero h1 .accent{color:var(--aqua-light);position:relative;white-space:nowrap}
+.hero h1 .accent svg{position:absolute;left:0;bottom:-.12em;width:100%;height:.34em;overflow:visible}
+.hero p.lead{
+  color:rgba(255,255,255,.92);font-size:clamp(1.05rem,2vw,1.32rem);max-width:620px;
+  margin:26px 0 36px;font-weight:400;line-height:1.6;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:44px}
+.chip{
+  display:inline-flex;align-items:center;gap:.5em;font-size:.92rem;font-weight:600;color:#fff;
+  padding:.5em 1.05em;border-radius:100px;background:rgba(255,255,255,.1);
+  border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px);
+}
+.chip .dot{width:7px;height:7px;border-radius:50%;background:var(--aqua)}
+.scroll-cue{
+  position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.75);
+  font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+}
+.scroll-cue .mouse{width:22px;height:34px;border:2px solid rgba(255,255,255,.5);border-radius:12px;position:relative}
+.scroll-cue .mouse::after{content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);width:3px;height:7px;background:#fff;border-radius:2px;animation:wheel 1.6s ease-in-out infinite}
+@keyframes wheel{0%{opacity:0;transform:translate(-50%,0)}40%{opacity:1}100%{opacity:0;transform:translate(-50%,10px)}}
+
+/* wave divider */
+.wave{display:block;width:100%;height:auto;line-height:0}
+.wave svg{display:block;width:100%;height:clamp(60px,9vw,120px)}
+
+/* ---------- Sections base ---------- */
+.section{padding-block:clamp(80px,11vw,140px);position:relative}
+.section-head{max-width:680px;margin-bottom:clamp(40px,6vw,64px)}
+.section-head.center{margin-inline:auto;text-align:center}
+.section-head h2{font-size:clamp(2.1rem,5vw,3.5rem);margin:16px 0 0}
+.section-head p{color:var(--ink-soft);font-size:1.12rem;margin-top:18px;line-height:1.6}
+
+/* ---------- Intro ---------- */
+.intro{background:var(--sand)}
+.intro-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(40px,6vw,80px);align-items:center}
+.intro-lead{font-size:clamp(1.3rem,2.6vw,1.7rem);font-family:'Bricolage Grotesque',sans-serif;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+.intro-lead .hl{background:linear-gradient(180deg,transparent 62%,var(--aqua) 62%);padding:0 .08em}
+.intro-text{color:var(--ink-soft);margin-top:22px;font-size:1.08rem}
+.pillars{display:flex;flex-direction:column;gap:18px}
+.pillar{display:flex;gap:18px;align-items:flex-start;padding:22px;background:#fff;border-radius:var(--r-md);box-shadow:var(--shadow-sm);border:1px solid var(--line)}
+.pillar-ic{width:46px;height:46px;flex:none;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(16,185,204,.16),rgba(95,224,216,.16));color:var(--teal)}
+.pillar-ic svg{width:24px;height:24px}
+.pillar h4{font-size:1.12rem;margin-bottom:3px}
+.pillar p{font-size:.97rem;color:var(--ink-soft);line-height:1.5}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:clamp(50px,7vw,80px);
+  padding:clamp(28px,4vw,42px);background:linear-gradient(135deg,var(--deep),var(--abyss));
+  border-radius:var(--r-lg);box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+.stats::after{content:"";position:absolute;right:-60px;top:-60px;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,204,.35),transparent 70%)}
+.stat{position:relative;z-index:1;text-align:center}
+.stat .num{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:clamp(2rem,4.2vw,3rem);color:#fff;line-height:1}
+.stat .num small{font-size:.5em;color:var(--aqua);font-weight:600}
+.stat .lbl{color:rgba(255,255,255,.72);font-size:.92rem;margin-top:8px;font-weight:500}
+
+/* ---------- Activities ---------- */
+.activities{background:var(--sand)}
+.act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,2.5vw,30px)}
+.act-card{
+  position:relative;border-radius:var(--r-lg);overflow:hidden;min-height:420px;
+  display:flex;flex-direction:column;justify-content:flex-end;color:#fff;
+  box-shadow:var(--shadow-md);isolation:isolate;
+  transition:transform .4s cubic-bezier(.2,.7,.3,1),box-shadow .4s ease;
+}
+.act-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.act-card .bg{position:absolute;inset:0;z-index:-2}
+.act-card .bg img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.act-card:hover .bg img{transform:scale(1.06)}
+.act-card::after{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(4,47,60,0) 30%,rgba(4,47,60,.55) 62%,rgba(4,47,60,.92))}
+.act-a1 .bg{background:linear-gradient(150deg,#0a6b7f,#042f3c)}
+.act-a2 .bg{background:linear-gradient(150deg,#10b9cc,#064d5e)}
+.act-a3 .bg{background:linear-gradient(150deg,#0a6b7f,#053a48)}
+.act-a4 .bg{background:linear-gradient(150deg,#13a7bb,#0a6b7f)}
+.act-body{padding:clamp(24px,3vw,34px);position:relative}
+.act-tag{display:inline-flex;align-items:center;gap:.5em;font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--aqua-light);margin-bottom:12px}
+.act-card h3{font-size:clamp(1.6rem,3vw,2.1rem);margin-bottom:10px}
+.act-card p{color:rgba(255,255,255,.88);font-size:1rem;line-height:1.55;max-width:42ch}
+.act-meta{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.2);flex-wrap:wrap}
+.act-cond{font-size:.84rem;color:rgba(255,255,255,.78);font-weight:500}
+.act-price{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.15rem;color:#fff;white-space:nowrap}
+.act-price small{font-weight:500;font-size:.72em;color:var(--aqua);display:block;text-align:right;letter-spacing:.04em}
+
+/* ---------- Immersion band ---------- */
+.immersion{position:relative;background:linear-gradient(160deg,#064d5e,#042f3c);color:#fff;text-align:center;overflow:hidden;isolation:isolate}
+.immersion .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.22;z-index:-2;mix-blend-mode:luminosity}
+.immersion::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(80% 120% at 50% 0%,rgba(16,185,204,.22),transparent 60%)}
+.immersion .inner{padding-block:clamp(90px,13vw,150px)}
+.immersion blockquote{font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:clamp(1.8rem,4.5vw,3.2rem);line-height:1.18;letter-spacing:-.02em;max-width:14ch;margin-inline:auto}
+.immersion blockquote .accent{color:var(--aqua-light)}
+.immersion .sub{color:rgba(255,255,255,.75);margin-top:24px;font-size:1.05rem}
+.bubbles{position:absolute;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.bubbles i{position:absolute;bottom:-40px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.6),rgba(126,237,228,.15));animation:rise linear infinite;opacity:.5}
+@keyframes rise{0%{transform:translateY(0) scale(.6);opacity:0}10%{opacity:.55}100%{transform:translateY(-115vh) scale(1);opacity:0}}
+
+/* ---------- Pricing ---------- */
+.pricing{background:var(--sand)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,2.5vw,28px)}
+.price-card{background:#fff;border-radius:var(--r-lg);padding:clamp(28px,3.2vw,38px);border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
+.price-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-md)}
+.price-card.feature{background:linear-gradient(160deg,#0a6b7f,#042f3c);color:#fff;border:none;box-shadow:var(--shadow-md)}
+.price-ic{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(16,185,204,.15),rgba(95,224,216,.15));color:var(--teal);margin-bottom:20px}
+.price-card.feature .price-ic{background:rgba(255,255,255,.14);color:var(--aqua-light)}
+.price-ic svg{width:28px;height:28px}
+.price-card h3{font-size:1.5rem;margin-bottom:6px}
+.price-card .tagline{color:var(--ink-soft);font-size:.96rem;margin-bottom:22px}
+.price-card.feature .tagline{color:rgba(255,255,255,.78)}
+.price-rows{display:flex;flex-direction:column;gap:2px;margin-top:auto}
+.price-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:13px 0;border-top:1px dashed var(--line)}
+.price-card.feature .price-row{border-top-color:rgba(255,255,255,.2)}
+.price-row .dur{font-weight:500;color:var(--ink-soft)}
+.price-card.feature .price-row .dur{color:rgba(255,255,255,.82)}
+.price-row .val{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1.25rem}
+.price-row .val .ribbon{font-size:.65em;color:var(--sun);font-weight:600;margin-left:.4em}
+.price-note{text-align:center;color:var(--ink-soft);font-size:.92rem;margin-top:32px}
+
+/* ---------- On site / equipment ---------- */
+.onsite{background:linear-gradient(180deg,var(--sand),var(--sand-2))}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,2.4vw,26px)}
+.feat{background:#fff;border-radius:var(--r-md);padding:clamp(24px,2.8vw,30px);border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:transform .3s ease}
+.feat:hover{transform:translateY(-5px)}
+.feat-ic{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;color:#fff;margin-bottom:18px;background:linear-gradient(135deg,var(--lagoon),var(--teal))}
+.feat:nth-child(2) .feat-ic{background:linear-gradient(135deg,var(--sun),var(--coral))}
+.feat:nth-child(3) .feat-ic{background:linear-gradient(135deg,var(--aqua),var(--lagoon))}
+.feat:nth-child(4) .feat-ic{background:linear-gradient(135deg,var(--teal),var(--abyss))}
+.feat-ic svg{width:26px;height:26px}
+.feat h4{font-size:1.18rem;margin-bottom:8px}
+.feat p{font-size:.96rem;color:var(--ink-soft);line-height:1.5}
+
+/* ---------- Gallery ---------- */
+.gallery{background:var(--sand-2)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:14px}
+.gal-item{overflow:hidden;border-radius:var(--r-md);position:relative;box-shadow:var(--shadow-sm)}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease}
+.gal-item:hover img{transform:scale(1.07)}
+.gal-item::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(4,47,60,.25));opacity:0;transition:opacity .4s ease}
+.gal-item:hover::after{opacity:1}
+.gal-1{grid-column:span 2;grid-row:span 2;background:linear-gradient(150deg,#0a6b7f,#042f3c)}
+.gal-2{background:linear-gradient(150deg,#10b9cc,#064d5e)}
+.gal-3{background:linear-gradient(150deg,#13a7bb,#0a6b7f)}
+.gal-4{grid-column:span 2;background:linear-gradient(150deg,#0a6b7f,#053a48)}
+
+/* ---------- Practical ---------- */
+.infos{background:linear-gradient(160deg,#053a48,#042f3c);color:#fff;position:relative;overflow:hidden}
+.infos::after{content:"";position:absolute;left:-80px;bottom:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,204,.25),transparent 70%)}
+.infos-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,64px);position:relative;z-index:1}
+.info-list{display:flex;flex-direction:column;gap:8px}
+.info-item{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.13)}
+.info-item:first-child{padding-top:0}
+.info-ic{width:44px;height:44px;flex:none;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.1);color:var(--aqua-light)}
+.info-ic svg{width:23px;height:23px}
+.info-item h4{font-size:1.1rem;margin-bottom:4px;color:#fff}
+.info-item p{color:rgba(255,255,255,.78);font-size:.98rem;line-height:1.5}
+.info-item a{color:var(--aqua-light);font-weight:600}
+.info-item a:hover{text-decoration:underline}
+.map-card{border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.15);min-height:340px;background:#0a6b7f}
+.map-card iframe{width:100%;height:100%;min-height:340px;border:0;display:block;filter:saturate(1.05)}
+.map-cta{margin-top:24px}
+
+/* ---------- Contact ---------- */
+.contact{background:var(--sand)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(40px,6vw,72px);align-items:start}
+.contact-aside h2{font-size:clamp(2rem,4.5vw,3rem);margin:16px 0 18px}
+.contact-aside p{color:var(--ink-soft);font-size:1.1rem;margin-bottom:32px}
+.contact-methods{display:flex;flex-direction:column;gap:14px}
+.cmethod{display:flex;align-items:center;gap:16px;padding:18px 20px;background:#fff;border-radius:var(--r-md);border:1px solid var(--line);box-shadow:var(--shadow-sm);transition:transform .25s ease,box-shadow .25s ease}
+.cmethod:hover{transform:translateX(4px);box-shadow:var(--shadow-md)}
+.cmethod-ic{width:46px;height:46px;flex:none;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--lagoon),var(--teal));color:#fff}
+.cmethod-ic svg{width:23px;height:23px}
+.cmethod .k{font-size:.8rem;color:var(--ink-soft);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.cmethod .v{font-weight:700;font-size:1.05rem;color:var(--ink)}
+.socials{display:flex;gap:12px;margin-top:24px}
+.socials a{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:var(--ink);color:#fff;transition:transform .25s ease,background .25s ease}
+.socials a:hover{transform:translateY(-3px);background:var(--teal)}
+.socials svg{width:22px;height:22px}
+
+.form-card{background:#fff;border-radius:var(--r-lg);padding:clamp(28px,3.5vw,44px);box-shadow:var(--shadow-md);border:1px solid var(--line)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.86rem;font-weight:600;color:var(--ink);margin-bottom:7px}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:var(--r-sm);
+  font-family:inherit;font-size:1rem;color:var(--ink);background:var(--sand);transition:border .2s ease,box-shadow .2s ease;
+}
+.field textarea{resize:vertical;min-height:120px}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--lagoon);box-shadow:0 0 0 4px rgba(16,185,204,.14);background:#fff}
+.form-card .btn{width:100%;margin-top:6px;padding:1.05em}
+.form-msg{margin-top:16px;padding:14px 18px;border-radius:var(--r-sm);background:rgba(16,185,204,.12);color:var(--teal);font-weight:600;font-size:.95rem;display:none;align-items:center;gap:.6em}
+.form-msg.show{display:flex}
+.form-fine{font-size:.8rem;color:var(--ink-soft);margin-top:14px;text-align:center}
+
+/* ---------- Footer ---------- */
+.footer{background:var(--abyss);color:rgba(255,255,255,.7);padding-block:clamp(56px,8vw,80px) 32px}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.12)}
+.footer .brand{color:#fff;margin-bottom:16px}
+.footer-about{font-size:.96rem;line-height:1.6;max-width:34ch}
+.footer-col h5{color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;margin-bottom:16px;font-weight:600}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col a{font-size:.95rem;transition:color .2s ease}
+.footer-col a:hover{color:var(--aqua)}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:28px;flex-wrap:wrap;font-size:.86rem}
+.footer-bottom a:hover{color:var(--aqua)}
+
+/* ---------- Reveal anim ---------- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}
+.reveal.d2{transition-delay:.16s}
+.reveal.d3{transition-delay:.24s}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .nav-links,.nav-cta .btn{display:none}
+  .burger{display:flex}
+  .nav-cta{gap:0}
+  .intro-grid,.infos-grid,.contact-grid{grid-template-columns:1fr}
+  .act-grid,.price-grid{grid-template-columns:1fr 1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .feat-grid{grid-template-columns:1fr 1fr}
+  .price-card.feature{order:-1}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+}
+@media (max-width:620px){
+  body{font-size:17px}
+  .act-grid,.price-grid,.feat-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-about{grid-column:1/-1}
+  .stats{grid-template-columns:1fr 1fr;gap:18px}
+  .act-card{min-height:380px}
+  .gal-1,.gal-4{grid-column:span 2}
 }
 
-.about{
-    grid-template-columns:1fr;
-}
+/* mobile menu drawer */
+.drawer{position:fixed;inset:0;z-index:120;background:rgba(4,47,60,.97);backdrop-filter:blur(8px);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;transform:translateY(-100%);transition:transform .4s cubic-bezier(.2,.7,.3,1);opacity:0;pointer-events:none}
+.drawer.open{transform:none;opacity:1;pointer-events:auto}
+.drawer a{color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-size:1.7rem;font-weight:600;padding:12px}
+.drawer .btn{margin-top:20px;font-size:1.1rem}
+.drawer-close{position:absolute;top:24px;right:24px;background:none;border:none;color:#fff;cursor:pointer;width:44px;height:44px}
+.drawer-close svg{width:30px;height:30px}
 
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none;transition:none}
 }
+:focus-visible{outline:3px solid var(--lagoon);outline-offset:3px;border-radius:6px}
 </style>
 </head>
-
 <body>
 
-<nav>
-    <ul>
-        <li><a href="#apropos">À propos</a></li>
-        <li><a href="#projet">Projet</a></li>
-        <li><a href="#parcours">Parcours</a></li>
-        <li><a href="#contact">Contact</a></li>
+<!-- ============ NAV ============ -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#accueil" class="brand" aria-label="Lac Evasion, accueil">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M2 17c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M2 12c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".75"/><path d="M2 7c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2S19.8 7 22 7" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+      </span>
+      Lac&nbsp;Evasion
+    </a>
+    <ul class="nav-links">
+      <li><a href="#decouvrir">Découvrir</a></li>
+      <li><a href="#activites">Activités</a></li>
+      <li><a href="#tarifs">Tarifs</a></li>
+      <li><a href="#sur-place">Sur place</a></li>
+      <li><a href="#infos">Infos pratiques</a></li>
     </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-sun">Réserver</a>
+      <button class="burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
 </nav>
 
-<header>
-    <div class="hero">
-        <h1>Mathieu Pardo</h1>
-        <h2>La 11ème Insoumise • Candidat aux élections législatives</h2>
+<!-- mobile drawer -->
+<div class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Fermer le menu">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>
+  </button>
+  <a href="#decouvrir">Découvrir</a>
+  <a href="#activites">Activités</a>
+  <a href="#tarifs">Tarifs</a>
+  <a href="#sur-place">Sur place</a>
+  <a href="#infos">Infos pratiques</a>
+  <a href="#contact" class="btn btn-sun">Réserver une journée</a>
+</div>
 
-        <p style="margin-bottom:40px;font-size:1.2rem;">
-            Pour une République sociale, écologique et citoyenne.
-        </p>
-
-        <a href="#projet" class="btn">
-            Découvrir le programme
-        </a>
+<!-- ============ HERO ============ -->
+<header class="hero" id="accueil">
+  <img class="hero-img" src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion-3.jpg" alt="" onerror="this.remove()">
+  <div class="caustics" aria-hidden="true"><span></span><span></span><span></span></div>
+  <div class="wrap hero-content">
+    <span class="eyebrow light">Saint-Laurent-d'Arce · Gironde</span>
+    <h1>Plongez dans
+      <span class="accent">l'évasion
+        <svg viewBox="0 0 300 24" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14c40-14 80 14 120 4s90-18 130-6 44 10 46 8" stroke="var(--aqua)" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+      </span>.
+    </h1>
+    <p class="lead">Un aquaparc gonflable, du paddle, du kayak et des pédalos sur un lac en pleine nature, à 30&nbsp;minutes de Bordeaux. Le terrain de jeu de toute la belle saison.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-sun">Réserver l'aventure
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#activites" class="btn btn-ghost">Voir les activités</a>
     </div>
+    <div class="hero-chips">
+      <span class="chip"><span class="dot"></span>Aquaparc gonflable</span>
+      <span class="chip"><span class="dot"></span>Paddle</span>
+      <span class="chip"><span class="dot"></span>Kayak</span>
+      <span class="chip"><span class="dot"></span>Pédalo</span>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <span class="mouse"></span>
+    Défiler
+  </div>
 </header>
 
-<section id="apropos">
-    <h2 class="section-title">Qui suis-je ?</h2>
+<div class="wave" aria-hidden="true">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path fill="var(--sand)" d="M0 64c180 40 360 40 540 16S900 24 1080 40s300 48 360 56V120H0Z"/></svg>
+</div>
 
-    <div class="about">
-        <img src="mathieu-pardo.jpg" alt="Mathieu Pardo">
-
-        <div>
-            <h3 style="color:#652D90;margin-bottom:20px;">
-                Agent territorial et homme de terrain
-            </h3>
-
-            <p>
-                Chef d'équipe voirie dans une grande collectivité,
-                engagé quotidiennement au service des habitants.
-            </p>
-
-            <br>
-
-            <p>
-                Je porte les valeurs de justice sociale,
-                d'écologie populaire et de démocratie citoyenne.
-            </p>
+<!-- ============ INTRO ============ -->
+<section class="section intro" id="decouvrir">
+  <div class="wrap">
+    <div class="intro-grid">
+      <div class="reveal">
+        <span class="eyebrow">Bienvenue au bord de l'eau</span>
+        <p class="intro-lead" style="margin-top:18px">À Saint-Laurent-d'Arce, le Lac Evasion transforme chaque belle journée en <span class="hl">souvenir d'été</span>. On saute, on pagaie, on flotte, on pique-nique au soleil — en famille ou entre amis.</p>
+        <p class="intro-text">Niché dans un écrin de verdure du nord de la Gironde, ce plan d'eau préservé concentre tout ce qui fait une journée réussie : des sensations sur le parcours gonflable, des balades nautiques à votre rythme et de quoi se poser à l'ombre entre deux baignades. Aucun équipement à prévoir, juste l'envie de profiter.</p>
+      </div>
+      <div class="pillars reveal d1">
+        <div class="pillar">
+          <span class="pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="9" cy="7" r="3" stroke="currentColor" stroke-width="2"/><circle cx="17" cy="9" r="2.2" stroke="currentColor" stroke-width="2"/><path d="M3 20c0-3 2.7-5 6-5s6 2 6 5M15 20c0-2 1.4-3.6 3.4-3.6S21.5 18 21.5 20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+          <div><h4>En famille</h4><p>Pensé pour les petits comme pour les grands, dès 1,15&nbsp;m accompagné.</p></div>
         </div>
+        <div class="pillar">
+          <span class="pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3c3 4 5 6.5 5 10a5 5 0 0 1-10 0c0-3.5 2-6 5-10Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <div><h4>Pleine nature</h4><p>Un lac calme et préservé, loin du bruit et de la foule.</p></div>
+        </div>
+        <div class="pillar">
+          <span class="pillar-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m13 2-9 12h7l-2 8 9-12h-7l2-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+          <div><h4>Sensations</h4><p>Un parcours flottant qui met l'équilibre de chacun à l'épreuve.</p></div>
+        </div>
+      </div>
     </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="num">4</div><div class="lbl">activités nautiques</div></div>
+      <div class="stat"><div class="num">1,15<small>&nbsp;m</small></div><div class="lbl">accès dès cette taille</div></div>
+      <div class="stat"><div class="num">~30<small>&nbsp;min</small></div><div class="lbl">de Bordeaux</div></div>
+      <div class="stat"><div class="num">100<small>&nbsp;%</small></div><div class="lbl">esprit vacances</div></div>
+    </div>
+  </div>
 </section>
 
-<section id="projet">
-    <h2 class="section-title">Mes priorités</h2>
-
-    <div class="card-grid">
-
-        <div class="card">
-            <h3>🌱 Écologie populaire</h3>
-            <p>Investir dans la transition écologique sans pénaliser les citoyens.</p>
-        </div>
-
-        <div class="card">
-            <h3>🏥 Services publics</h3>
-            <p>Défendre l'hôpital, l'école et les collectivités locales.</p>
-        </div>
-
-        <div class="card">
-            <h3>💰 Pouvoir d'achat</h3>
-            <p>Augmenter les salaires et protéger les familles face à l'inflation.</p>
-        </div>
-
-        <div class="card">
-            <h3>🤝 Démocratie</h3>
-            <p>Redonner la parole aux citoyens et renforcer les consultations locales.</p>
-        </div>
-
+<!-- ============ ACTIVITIES ============ -->
+<section class="section activities" id="activites">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Le terrain de jeu</span>
+      <h2>Quatre façons de profiter du lac</h2>
+      <p>De l'adrénaline du parcours gonflable à la balade tranquille en pédalo, chacun trouve son rythme sur l'eau.</p>
     </div>
+
+    <div class="act-grid">
+      <article class="act-card act-a1 reveal">
+        <div class="bg"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/lac-evasion-2.jpg" alt="Parcours aquatique gonflable du Lac Evasion" onerror="this.remove()"></div>
+        <div class="act-body">
+          <span class="act-tag">★ L'incontournable</span>
+          <h3>Aquaparc gonflable</h3>
+          <p>Toboggans, trampolines et obstacles flottants à enchaîner sans tomber à l'eau… ou presque. Le parcours qui fait grimper l'adrénaline et les éclats de rire.</p>
+          <div class="act-meta">
+            <span class="act-cond">Dès 1,15 m accompagné · savoir nager</span>
+            <span class="act-price">dès 10&nbsp;€<small>40 min</small></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="act-card act-a2 reveal d1">
+        <div class="bg"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion-4.jpg" alt="Paddle sur le lac" onerror="this.remove()"></div>
+        <div class="act-body">
+          <span class="act-tag">Zen</span>
+          <h3>Paddle</h3>
+          <p>Tenez-vous debout, trouvez l'équilibre et glissez sur le miroir du lac. L'activité douce par excellence, accessible à tous.</p>
+          <div class="act-meta">
+            <span class="act-cond">En solo · à votre rythme</span>
+            <span class="act-price">dès 7&nbsp;€<small>30 min</small></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="act-card act-a3 reveal">
+        <div class="bg"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion.jpg" alt="Kayak sur le lac" onerror="this.remove()"></div>
+        <div class="act-body">
+          <span class="act-tag">Exploration</span>
+          <h3>Kayak</h3>
+          <p>En solo ou en duo, explorez chaque recoin du plan d'eau à la force des bras. La balade qui réveille l'envie d'aventure.</p>
+          <div class="act-meta">
+            <span class="act-cond">1 ou 2 places</span>
+            <span class="act-price">dès 7&nbsp;€<small>30 min</small></span>
+          </div>
+        </div>
+      </article>
+
+      <article class="act-card act-a4 reveal d1">
+        <div class="bg"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion-3.jpg" alt="Pédalo sur le lac" onerror="this.remove()"></div>
+        <div class="act-body">
+          <span class="act-tag">Détente</span>
+          <h3>Pédalo</h3>
+          <p>L'incontournable des après-midis d'été. On pédale, on papote, on profite du paysage — et on garde les pieds au sec.</p>
+          <div class="act-meta">
+            <span class="act-cond">Jusqu'à 4 personnes</span>
+            <span class="act-price">dès 15&nbsp;€<small>30 min</small></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
 </section>
 
-<section id="parcours">
-    <h2 class="section-title">Mon parcours</h2>
-
-    <div class="timeline">
-
-        <div class="timeline-item">
-            <h3>Chef d'équipe Voirie</h3>
-            <p>Gestion d'une équipe de 14 agents dans un EPCI de plus de 800 000 habitants.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Engagement citoyen</h3>
-            <p>Défense des services publics et de l'intérêt général.</p>
-        </div>
-
-        <div class="timeline-item">
-            <h3>Candidature législative</h3>
-            <p>Porter la voix de la 11ème circonscription et des habitants du territoire.</p>
-        </div>
-
-    </div>
+<!-- ============ IMMERSION ============ -->
+<section class="immersion">
+  <img class="bg-img" src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion.jpg" alt="" onerror="this.remove()">
+  <div class="bubbles" aria-hidden="true"></div>
+  <div class="wrap inner reveal">
+    <blockquote>Le soleil, l'eau, les rires&nbsp;: <span class="accent">l'été comme on l'aime.</span></blockquote>
+    <p class="sub">Une parenthèse de fraîcheur à deux pas de chez vous.</p>
+  </div>
 </section>
 
-<section id="contact">
-    <h2 class="section-title">Rejoindre la campagne</h2>
+<!-- ============ PRICING ============ -->
+<section class="section pricing" id="tarifs">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Tarifs</span>
+      <h2>Des prix tout doux pour de grandes journées</h2>
+      <p>Choisissez votre activité et votre durée. Pas de réservation obligatoire, mais conseillée en haute saison.</p>
+    </div>
 
-    <div class="card">
-        <form>
+    <div class="price-grid">
+      <div class="price-card feature reveal">
+        <span class="price-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m13 2-9 12h7l-2 8 9-12h-7l2-8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <h3>Aquaparc</h3>
+        <p class="tagline">Accès au parcours gonflable</p>
+        <div class="price-rows">
+          <div class="price-row"><span class="dur">40 minutes</span><span class="val">10&nbsp;€</span></div>
+          <div class="price-row"><span class="dur">1 heure</span><span class="val">12&nbsp;€</span></div>
+          <div class="price-row"><span class="dur">2 heures</span><span class="val">18&nbsp;€<span class="ribbon">le + malin</span></span></div>
+        </div>
+      </div>
 
-            <input type="text" placeholder="Nom"
-            style="width:100%;padding:15px;margin-bottom:15px;border-radius:10px;border:1px solid #ddd;">
+      <div class="price-card reveal d1">
+        <span class="price-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 20c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M7 14 17 4M14 8l3 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h3>Paddle &amp; Kayak</h3>
+        <p class="tagline">Location à l'unité</p>
+        <div class="price-rows">
+          <div class="price-row"><span class="dur">30 minutes</span><span class="val">7&nbsp;€</span></div>
+          <div class="price-row"><span class="dur">1 heure</span><span class="val">10&nbsp;€</span></div>
+        </div>
+      </div>
 
-            <input type="email" placeholder="Email"
-            style="width:100%;padding:15px;margin-bottom:15px;border-radius:10px;border:1px solid #ddd;">
+      <div class="price-card reveal d2">
+        <span class="price-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 18c2.2 0 2.2-2 4.4-2s2.2 2 4.4 2 2.2-2 4.4-2 2.2 2 4.4 2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="7" y="7" width="10" height="6" rx="2" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="13" r="1" fill="currentColor"/></svg></span>
+        <h3>Pédalo</h3>
+        <p class="tagline">Location à l'unité</p>
+        <div class="price-rows">
+          <div class="price-row"><span class="dur">30 minutes</span><span class="val">15&nbsp;€</span></div>
+          <div class="price-row"><span class="dur">1 heure</span><span class="val">20&nbsp;€</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="price-note reveal">Tarifs indicatifs · L'accès à l'aquaparc est soumis au savoir-nager (dès 1,15&nbsp;m accompagné, 1,30&nbsp;m en autonomie).</p>
+  </div>
+</section>
 
-            <textarea placeholder="Votre message"
-            style="width:100%;padding:15px;height:150px;border-radius:10px;border:1px solid #ddd;"></textarea>
+<!-- ============ ON SITE ============ -->
+<section class="section onsite" id="sur-place">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Sur place</span>
+      <h2>Tout est prévu pour une journée entière</h2>
+      <p>Posez vos affaires, lâchez les enfants vers les jeux et profitez — le reste, on s'en occupe.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat reveal">
+        <span class="feat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V11l7-5 7 5v10M9 21v-5h6v5" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg></span>
+        <h4>Aire de pique-nique</h4>
+        <p>Posez votre nappe à l'ombre, face au lac, et savourez le déjeuner au grand air.</p>
+      </div>
+      <div class="feat reveal d1">
+        <span class="feat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="7" r="3.2" stroke="#fff" stroke-width="2"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M9 11l-3 3M15 11l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h4>Jeux pour enfants</h4>
+        <p>De quoi occuper les plus petits entre deux baignades, en toute sécurité.</p>
+      </div>
+      <div class="feat reveal d2">
+        <span class="feat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M6 3v7a4 4 0 0 0 8 0V3M10 14v7M4 7h12" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M18 3c1.5 1 2 3 2 5s-.5 4-2 5v8" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <h4>Restauration</h4>
+        <p>Petite faim, grande soif&nbsp;? Tout est prévu sur place pour se rafraîchir.</p>
+      </div>
+      <div class="feat reveal d3">
+        <span class="feat-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2M5 16l2-9h10l2 9M9 7V4h6v3" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h4>Structures gonflables</h4>
+        <p>Le terrain de jeu géant sur l'eau qui fait toute la différence d'une vraie journée fun.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <br><br>
+<!-- ============ GALLERY ============ -->
+<section class="section gallery">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">En images</span>
+      <h2>Un avant-goût de la journée</h2>
+    </div>
+    <div class="gal-grid reveal">
+      <div class="gal-item gal-1"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/lac-evasion-2.jpg" alt="Vue du parcours gonflable sur le lac" onerror="this.remove()"></div>
+      <div class="gal-item gal-2"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion-4.jpg" alt="Activité nautique au Lac Evasion" onerror="this.remove()"></div>
+      <div class="gal-item gal-3"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion.jpg" alt="Plan d'eau et nature" onerror="this.remove()"></div>
+      <div class="gal-item gal-4"><img src="https://www.gironde-tourisme.com/wp-content/uploads/wpetourisme/photo-lac-evasion-3.jpg" alt="Le lac au soleil" onerror="this.remove()"></div>
+    </div>
+  </div>
+</section>
 
-            <button class="btn" type="submit">
-                Envoyer
-            </button>
+<!-- ============ PRACTICAL INFO ============ -->
+<section class="section infos" id="infos">
+  <div class="wrap">
+    <div class="infos-grid">
+      <div class="reveal">
+        <span class="eyebrow light">Infos pratiques</span>
+        <h2 style="color:#fff;font-size:clamp(2rem,4.5vw,3rem);margin:16px 0 28px">Avant de venir</h2>
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="2"/></svg></span>
+            <div><h4>Adresse</h4><p>21 Route des Lacs, 33240 Saint-Laurent-d'Arce<br><a href="https://maps.google.fr/?saddr=&daddr=45.0327999,-0.4775955" target="_blank" rel="noopener">Calculer mon itinéraire →</a></p></div>
+          </div>
+          <div class="info-item">
+            <span class="info-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><h4>Ouverture</h4><p>Ouvert pendant la saison estivale. Horaires détaillés et conditions météo communiqués au téléphone — appelez-nous avant de venir.</p></div>
+          </div>
+          <div class="info-item">
+            <span class="info-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="2"/></svg></span>
+            <div><h4>Conditions d'accès à l'aquaparc</h4><p>Savoir nager obligatoire. Accès dès 1,15&nbsp;m accompagné d'un adulte, ou 1,30&nbsp;m en autonomie.</p></div>
+          </div>
+          <div class="info-item">
+            <span class="info-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div><h4>Bon à savoir</h4><p>Pensez au maillot, à la serviette, à la crème solaire et à une tenue de rechange. Le reste est sur place&nbsp;!</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal d1">
+        <div class="map-card">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-0.4976%2C45.0228%2C-0.4576%2C45.0428&layer=mapnik&marker=45.0328%2C-0.4776" title="Carte — Lac Evasion à Saint-Laurent-d'Arce" loading="lazy"></iframe>
+        </div>
+        <a href="https://maps.google.fr/?saddr=&daddr=45.0327999,-0.4775955" target="_blank" rel="noopener" class="btn btn-ghost map-cta" style="color:#fff;border-color:rgba(255,255,255,.45)">Ouvrir dans Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
 
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-aside reveal">
+        <span class="eyebrow">Réserver &amp; contact</span>
+        <h2>On vous garde une place au soleil&nbsp;?</h2>
+        <p>Une question, un groupe à organiser, un anniversaire à fêter au bord de l'eau&nbsp;? Écrivez-nous ou appelez directement, on vous répond avec plaisir.</p>
+        <div class="contact-methods">
+          <a href="tel:+33620170955" class="cmethod">
+            <span class="cmethod-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L19 13l3 2v3a2 2 0 0 1-2 2 16 16 0 0 1-15-15 2 2 0 0 1 2-2Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+            <div><div class="k">Téléphone</div><div class="v">06 20 17 09 55</div></div>
+          </a>
+          <a href="tel:+33768248348" class="cmethod">
+            <span class="cmethod-ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 5 5L19 13l3 2v3a2 2 0 0 1-2 2 16 16 0 0 1-15-15 2 2 0 0 1 2-2Z" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+            <div><div class="k">Téléphone (bis)</div><div class="v">07 68 24 83 48</div></div>
+          </a>
+        </div>
+        <div class="socials">
+          <a href="https://www.facebook.com/lacevasion" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 9V7c0-1 .5-1.5 1.7-1.5H17V2.2C16.5 2.1 15.5 2 14.4 2 11.8 2 10 3.6 10 6.6V9H7.5v3.5H10V22h3.7v-9.5H16l.5-3.5H14Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/lacevasion/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="form-card reveal d1">
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="nom">Nom</label>
+              <input type="text" id="nom" name="nom" placeholder="Votre nom" required>
+            </div>
+            <div class="field">
+              <label for="prenom">Prénom</label>
+              <input type="text" id="prenom" name="prenom" placeholder="Votre prénom">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="vous@email.com" required>
+            </div>
+            <div class="field">
+              <label for="tel">Téléphone</label>
+              <input type="tel" id="tel" name="tel" placeholder="06 00 00 00 00">
+            </div>
+          </div>
+          <div class="field">
+            <label for="activite">Activité souhaitée</label>
+            <select id="activite" name="activite">
+              <option value="">Sélectionnez…</option>
+              <option>Aquaparc gonflable</option>
+              <option>Paddle</option>
+              <option>Kayak</option>
+              <option>Pédalo</option>
+              <option>Groupe / anniversaire</option>
+              <option>Autre demande</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" placeholder="Dites-nous tout : date envisagée, nombre de personnes, âges des enfants…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-sun">Envoyer ma demande
+            <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="form-msg" id="formMsg">
+            <svg viewBox="0 0 24 24" fill="none" style="width:1.2em;height:1.2em"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Merci ! Votre demande est prête — nous vous recontactons très vite.
+          </div>
+          <p class="form-fine">En envoyant ce formulaire, vous acceptez d'être recontacté au sujet de votre demande.</p>
         </form>
+      </div>
     </div>
+  </div>
 </section>
 
-<footer>
-    © 2025 Mathieu Pardo - La 11ème Insoumise
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M2 17c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M2 12c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2 2.2-2 4.4-2" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".75"/><path d="M2 7c2.2 0 2.2 2 4.4 2s2.2-2 4.4-2 2.2 2 4.4 2S19.8 7 22 7" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/></svg>
+          </span>
+          Lac Evasion
+        </div>
+        <p class="footer-about">L'aquaparc gonflable et la base de loisirs nautique de Saint-Laurent-d'Arce, en plein cœur de la Gironde.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Découvrir</h5>
+        <ul>
+          <li><a href="#decouvrir">Le lac</a></li>
+          <li><a href="#activites">Activités</a></li>
+          <li><a href="#tarifs">Tarifs</a></li>
+          <li><a href="#sur-place">Sur place</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Infos</h5>
+        <ul>
+          <li><a href="#infos">Accès &amp; horaires</a></li>
+          <li><a href="#contact">Réserver</a></li>
+          <li><a href="https://maps.google.fr/?saddr=&daddr=45.0327999,-0.4775955" target="_blank" rel="noopener">Itinéraire</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Nous suivre</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/lacevasion" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.instagram.com/lacevasion/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="tel:+33620170955">06 20 17 09 55</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Lac Evasion · Saint-Laurent-d'Arce, Gironde</span>
+      <span>21 Route des Lacs, 33240 Saint-Laurent-d'Arce</span>
+    </div>
+  </div>
 </footer>
 
+<script>
+// year
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// nav scroll state
+const nav = document.getElementById('nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 40);
+onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+// mobile drawer
+const burger = document.getElementById('burger');
+const drawer = document.getElementById('drawer');
+const drawerClose = document.getElementById('drawerClose');
+const openDrawer = () => { drawer.classList.add('open'); burger.setAttribute('aria-expanded','true'); document.body.style.overflow='hidden'; };
+const closeDrawer = () => { drawer.classList.remove('open'); burger.setAttribute('aria-expanded','false'); document.body.style.overflow=''; };
+burger.addEventListener('click', openDrawer);
+drawerClose.addEventListener('click', closeDrawer);
+drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', closeDrawer));
+
+// reveal on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:0.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// bubbles
+const bubbles = document.querySelector('.bubbles');
+if(bubbles && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  for(let i=0;i<14;i++){
+    const b=document.createElement('i');
+    const s=6+Math.random()*22;
+    b.style.width=s+'px'; b.style.height=s+'px';
+    b.style.left=Math.random()*100+'%';
+    b.style.animationDuration=(9+Math.random()*10)+'s';
+    b.style.animationDelay=(-Math.random()*12)+'s';
+    bubbles.appendChild(b);
+  }
+}
+
+// contact form (front-end confirmation — branchez un service d'envoi pour la production)
+const form = document.getElementById('contactForm');
+const msg = document.getElementById('formMsg');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  if(!form.checkValidity()){ form.reportValidity(); return; }
+  msg.classList.add('show');
+  form.querySelector('button').textContent = 'Demande prête ✓';
+  setTimeout(() => { form.reset(); }, 400);
+});
+</script>
 </body>
 </html>
